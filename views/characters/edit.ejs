@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/nav %>
+
+<div class="container post post-edit">
+    <% include ./partials/header %>
+
+    <form class="post-form form-horizontal" action="/users/<%=user.username%>/projects/<%=characters.project_id%>/characters/<%=characters._id%>?_method=put" method="post">
+        <div class="contentBox">
+            <h3 class="contentBoxTop">새 캐릭터 만들기</h3>
+            <fieldset>
+                <div class="form-group col-sm-6">
+                    <label for="name" class="col-sm-3 control-label">캐릭터 이름</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="name" name="name" value="<%= characters.name %>"
+                               placeholder="<%= characters.name %>"/></input>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="age" class="col-sm-3 control-label">나이</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="age" name="age" rows="5" value="<%= characters.age %>"
+                               placeholder="<%= characters.age %>"></input>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name" class="col-sm-3 control-label">캐릭터 역할</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline"><input type="radio" name="roll" value="주인공">주인공</label>
+                        <label class="radio-inline"><input type="radio" name="roll" value="조력자">조력자</label>
+                        <label class="radio-inline"><input type="radio" name="roll" value="대적자">대적자</label>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="sex" class="col-sm-3 control-label">성별</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="sex" name="sex" rows="5" value="<%= characters.sex %>"
+                               placeholder="<%= characters.sex %>"></input>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="job" class="col-sm-3 control-label">직업</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="job" name="job" rows="5" value="<%= characters.job %>"
+                               placeholder="<%= characters.job%>"></input>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="mbti_code" class="col-sm-3">캐릭터 유형 선택</label>
+                    <div class="form-group col-sm-9">
+                        <select class="form-control" id="mbti_category" name="mbti_category"
+                                onchange="mbti_code_change()" style="margin-left:15px;">
+                            <option value="행정가">행정가</option>
+                            <option value="수완가">수완가</option>
+                            <option value="봉사자">봉사자</option>
+                            <option value="사교가">사교가</option>
+                            <option value="지도자">지도자</option>
+                            <option value="해결사">해결사</option>
+                            <option value="언변가">언변가</option>
+                            <option value="열성가">열성가</option>
+                            <option value="준법자">준법자</option>
+                            <option value="개척자">개척자</option>
+                            <option value="관리자">관리자</option>
+                            <option value="예술가">예술가</option>
+                            <option value="발명가">발명가</option>
+                            <option value="이론가">이론가</option>
+                            <option value="예언가">예언가</option>
+                            <option value="이상가">이상가</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="motivation" class="col-sm-3 control-label">캐릭터 동기</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="motivation" name="motivation" rows="8"><%= characters.motivation%></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="mbti_code" class="col-sm-3 control-label">MBTI 코드</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="mbti_code" name="mbti_code" rows="1"><%= characters.mbti_code%></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="mbti_des" class="col-sm-3 control-label">MBTI 특성</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="mbti_des" name="mbti_des" rows="8"  ><%= characters.mbti_des %></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="description" class="col-sm-3 control-label">캐릭터 특징</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="description" name="description" rows="6"  ><%= characters.description %></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="trauma" class="col-sm-3 control-label">트라우마</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="trauma" name="trauma" rows="3" ><%= characters.trauma %></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="pathology" class="col-sm-3 control-label" >병리증상</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="pathology" name="pathology" rows="3" ><%= characters.pathology %></textarea>
+                    </div>
+                </div>
+                <div class="form-group" style="position:relative;float:left;">
+                    <h3 style="text-align: center;">캐릭터 속성</h3>
+                    <div class="form-group ">
+                        <canvas id="stat_chart" ></canvas>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">개방성</label>
+                        <input type="number" name="openness" min="0" max="10" class="form-control-inline"
+                               id="openness" onchange="stat_chart_update(0, this.value)" value="<%= characters
+                                .openness %>" placeholder="<%= characters.openness %>"/>
+                        <label for="usr">성실성</label>
+                        <input type="number" name="faithfulness" min="0" max="10" class="form-control-inline"
+                               id="faithfulness" onchange="stat_chart_update(1, this.value )" value="<%= characters
+                                .faithfulness %>" placeholder="<%= characters.faithfulness %>"/>
+                        <label for="usr">신경성</label>
+                        <input type="number" name="sensitiveness" min="0" max="10" class="form-control-inline"
+                               id="sensitiveness" onchange="stat_chart_update(2, this.value )" value="<%= characters
+                                .sensitiveness %>" placeholder="<%= characters.sensitiveness %>"/>
+                        <label for="usr">동조성</label>
+                        <input type="number" name="synchronism" min="0" max="10" class="form-control-inline"
+                               id="synchronism" onchange="stat_chart_update(3, this.value )" value="<%= characters
+                                .synchronism %>" placeholder="<%= characters.synchronism %>"/>
+                        <label for="usr">외향성</label>
+                        <input type="number" name="extroversion" min="0" max="10" class="form-control-inline"
+                               id="extroversion" onchange="stat_chart_update(4, this.value )" value="<%= characters
+                                .extroversion %>" placeholder="<%= characters.extroversion %>"/>
+                    </div>
+                </div>
+                <div class="form-group " style="position:relative;float:right;">
+                    <h3 style="text-align: center;">캐릭터 능력</h3>
+                    <div class="form-group ">
+                        <canvas id="ability_chart"></canvas>
+                    </div>
+                    <div class="form-group ">
+                        <label for="usr">지능</label>
+                        <input type="number" name="intelligence" min="0" max="10" class="form-control-inline"
+                               id="intelligence" onchange="ability_chart_update(0, this.value)" value="<%= characters
+                                .intelligence %>" placeholder="<%= characters.intelligence %>"/>
+                        <label for="usr">신체능력</label>
+                        <input type="number" name="physical" min="0" max="10" class="form-control-inline"
+                               id="physical" onchange="ability_chart_update(1, this.value)" value="<%= characters
+                                .physical %>" placeholder="<%= characters.physical %>"/>
+                        <label for="usr">감수성</label>
+                        <input type="number" name="emotional" min="0" max="10" class="form-control-inline"
+                               id="emotional" onchange="ability_chart_update(2, this.value)" value="<%= characters
+                                .emotional %>" placeholder="<%= characters.emotional %>"/>
+                        <label for="usr">사교성</label>
+                        <input type="number" name="social" min="0" max="10" class="form-control-inline" id="social"
+                               onchange="ability_chart_update(3, this.value)" value="<%= characters
+                                .social %>" placeholder="<%= characters.social %>"/>
+                        <label for="usr">재력</label>
+                        <input type="number" name="wealth" min="0" max="10" class="form-control-inline" id="wealth"
+                               onchange="ability_chart_update(4, this.value)" value="<%= characters
+                                .wealth %>" placeholder="<%= characters.wealth %>"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="floa_right">작가: <%=user.username%></div>
+        <div class="floa_right">프로젝트: <%=projects.title%></div>
+        <div class="buttons" style="float:left; margin-top:30px;">
+            <a class="btn btn-primary" href="/users/<%=user.username%>/projects/<%=projects._id%>/characters">뒤로</a>
+            <button type="submit" class="btn btn-danger">저장</button>
+        </div>
+    </form>
+</div>  <!-- container end -->
+<script>
+    function mbti_code_change() {
+        var mbti_roll = document.getElementById('mbti_category').value;
+        console.log(mbti_category);
+        find_mbti_des(mbti_roll);
+    }
+    function find_mbti_des(roll){
+        var mbti_roll = roll;
+        if(mbti_roll==''||mbti_roll == null){
+            alert('캐릭터 유형을 선택하세요');
+        }else{
+            $.getJSON('/data/mbti.json', function(data){
+                var mbti = data;
+                var num = 0;
+                var mbti_des;
+                var mbti_code;
+                for(i=0; i<mbti.mbti_code.length; i++){
+                    if(mbti_roll == mbti.mbti_code[i].roll)
+                    {
+                        num = i;
+                        mbti_code = mbti.mbti_code[num].code;
+                        mbti_des = mbti.mbti_code[num].description;
+
+                        write_mbti_des(mbti_code, mbti_des);
+                        return
+                    }
+                }
+            });
+        }
+    }
+    function write_mbti_des(code, des){
+        var mbti_code = code;
+        var mbti_des = des;
+        document.getElementById("mbti_code").innerHTML = mbti_code;
+        document.getElementById("mbti_des").innerHTML = mbti_des;
+    }
+</script>
+<!--chart code-->
+<script>
+        var openness = document.getElementById('openness').value;
+        var faithfulness = document.getElementById('faithfulness').value;
+        var sensitiveness = document.getElementById('sensitiveness').value;
+        var synchronism = document.getElementById('synchronism').value;
+        var extroversion = document.getElementById('extroversion').value;
+
+        var ctx = document.getElementById('stat_chart').getContext('2d');
+        var data ={
+            labels: ["개방성", "성실성", "신경성", "동조성", "외향성"],
+            datasets: [
+                {
+                    label: "캐릭터 속성",
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "rgba(255,99,132,1)",
+                    pointBackgroundColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgba(255,99,132,1)",
+                    data: [openness, faithfulness, sensitiveness, synchronism, extroversion]
+                }
+            ]
+        };
+        var stat_chart = new Chart(ctx, {
+            type: "radar",
+            data: data,
+            options: {
+                scale: {
+                    reverse: false,
+                    ticks: {
+                        beginAtZero: true,
+                        max: 10,
+                        min:0,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+
+        var intelligence = document.getElementById('intelligence').value;
+        var physical = document.getElementById('physical').value;
+        var emotional = document.getElementById('emotional').value;
+        var social = document.getElementById('social').value;
+        var wealth = document.getElementById('wealth').value;
+
+        var ctx = document.getElementById('ability_chart').getContext('2d');
+        var data ={
+            labels: ["지능", "신체능력", "감수성", "사교성", "재력"],
+            datasets: [
+                {
+                    label: "캐릭터 능력치",
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "rgba(190,196,132,1)",
+                    pointBackgroundColor: "rgba(190,190,132,1)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgba(190,190,132,1)",
+                    data: [intelligence, physical, emotional, social, wealth]
+                }
+            ]
+        };
+        var ability_chart = new Chart(ctx, {
+            type: "radar",
+            data: data,
+            options: {
+                scale: {
+                    reverse: false,
+                    ticks: {
+                        beginAtZero: true,
+                        max: 10,
+                        min:0,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+
+    function stat_chart_update(i, data) {
+        stat_chart.data.datasets[0].data[i]=data;
+        stat_chart.update();
+    }
+    function ability_chart_update(i, data) {
+        ability_chart.data.datasets[0].data[i]=data;
+        ability_chart.update();
+    }
+</script>
+<% include ../partials/footer %>
+</body>
+</html>

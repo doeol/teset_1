@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/nav %>
+
+<div class="container post post-show">
+    <% include ./partials/header %>
+
+    <div class="contentBox">
+        <h3 class="contentBoxTop">등장인물: <%= characters.name %></h3>
+        <div class="row">
+            <div class="post-body col-lg-12">
+                    <div class= "col-lg-3">
+                    <h4 class="col-lg-12">이름</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.name %></p></div>
+                    </div>
+                    <div class= "col-lg-3">
+                    <h4 class="col-lg-12">역할</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.roll %></p></div>
+                    </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">동기</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.motivation %></p></div>
+                </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">성별</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.sex %></p></div>
+                </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">나이</h4>
+                         <div class="post-body col-lg-12"><p><%= characters.age %></p></div>
+                </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">직업</h4>
+                         <div class="post-body col-lg-12"><p<%= characters.job %>></p></div>
+                </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">유형</h4>
+                         <div class="post-body col-lg-12"><p><%= characters.mbti_category %></p></div>
+                </div>
+                <div class= "col-lg-3">
+                    <h4 class="col-lg-12">MBTI 코드</h4>
+                         <div class="post-body col-lg-12"><p><%= characters.mbti_code %></p></div>
+                </div>
+                    <h4 class="col-lg-12">MBTI 설명</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.mbti_des %></p></div>
+            <div class= "col-lg-4">
+                    <h4 class="col-lg-12">캐릭터 특징</h4>
+                        <div class="post-body col-lg-12"><p><%= characters.description %></p></div>
+            </div>
+            <div class= "col-lg-4">
+                    <h4 class="col-lg-12">트라우마</h4>
+                            <div class="post-body col-lg-12"><p><%= characters.trauma %></p></div>
+            </div>
+            <div class= "col-lg-4">
+                    <h4 class="col-lg-12">병리증상</h4>
+                            <div class="post-body col-lg-12"><p><%= characters.pathology %></p></div>
+            </div>
+
+                <div class= "col-lg-6">
+                    <h4 class="col-lg-12" style="text-align: center;">캐릭터 속성</h4>
+                    <canvas id="stat_chart"></canvas>
+                    <div class="datas" style="text-align: center;">
+                        <div class="post-body" id="openness" style="display:inline-block;"><p>개방성 <%= characters.openness%></p></div>
+                        <div class="post-body" id="faithfulness" style="display:inline-block;"><p>성실성 <%= characters.faithfulness %></p></div>
+                        <div class="post-body" id="sensitiveness" style="display:inline-block;"><p>신경성 <%= characters.sensitiveness %></p></div>
+                        <div class="post-body" id="synchronism" style="display:inline-block;"><p>동조성 <%= characters.synchronism %></p></div>
+                        <div class="post-body" id="extroversion" style="display:inline-block;"><p>외향성 <%= characters.extroversion %></p></div>
+                    </div>
+                </div>
+                <div class= "col-lg-6">
+                    <h4 class="col-lg-12" style="text-align: center;">캐릭터 능력</h4>
+                    <canvas id="ability_chart"></canvas>
+                    <div class="datas" style="text-align: center;">
+                        <div class="post-body" id="intelligence" style="display:inline-block;"><p>지능 <%= characters.intelligence %></p></div>
+                        <div class="post-body" id="physical" style="display:inline-block;"><p>신체능력 <%= characters.physical %></p></div>
+                        <div class="post-body" id="emotional" style="display:inline-block;"><p>감수성 <%= characters.emotional %></p></div>
+                        <div class="post-body" id="social" style="display:inline-block;"><p>사교성 <%= characters.social %></p></div>
+                        <div class="post-body" id="wealth" style="display:inline-block;"><p>재력 <%= characters.wealth %></p></div>
+                    </div>
+                </div>
+            </div> <!-- col end-->
+            <div class="post-info"  style="width:180px;float:left">
+                <div>창작일: <%= characters.createdDate %> <%= characters.createdTime %></div>
+                <% if(characters.updatedAt) { %>
+                <div>최근 수정: <%= characters.updatedDate %> <%= characters.updatedTime %></div>
+                <% } %>
+            </div> <!-- project-info end -->
+        </div> <!-- row end -->
+    </div> <!-- post-container end -->
+    <div class="floa_right">작가: <%=user.username%></div>
+    <div class="floa_right">프로젝트: <%=projects.title%></div>
+
+    <div class="buttons" style="float:left;">
+        <a class="btn btn-primary" href="/users/<%=user.username%>/projects/<%=projects._id%>/characters">뒤로</a>
+        <a class="btn btn-success" href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/<%= characters
+                ._id %>/edit">수정</a>
+        <form action="/users/<%=user.username%>/projects/<%=projects._id%>/characters/<%= characters._id %>?_method=delete" method="post">
+          <a class="btn btn-warning" href="#" onclick="confirm('캐릭터를 정말 삭제 하시겠습니까?')?this.parentElement
+          .submit():null;">캐릭터 삭제</a>
+         </form>
+    </div>
+        <div class="buttons" style="float:right;">
+        <a class="btn btn-info" href="/users/<%=user.username%>/projects/<%=projects._id%>/plot">플롯 패턴 설정</a>
+    </div>
+
+</div> <!-- container end -->
+<!--chart code-->
+<script>
+    $( document ).ready(function() {
+        var openness = <%= characters.openness %>;
+        var faithfulness = <%= characters.faithfulness %>;
+        var sensitiveness = <%= characters.sensitiveness %>;
+        var synchronism = <%= characters.synchronism %>;
+        var extroversion = <%= characters.extroversion %>;
+
+        var ctx = document.getElementById('stat_chart').getContext('2d');
+        var data ={
+            labels: ["개방성", "성실성", "신경성", "동조성", "외향성"],
+            datasets: [
+                {
+                    label: "캐릭터 속성",
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "rgba(255,99,132,1)",
+                    pointBackgroundColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgba(255,99,132,1)",
+                    data: [openness, faithfulness, sensitiveness, synchronism, extroversion]
+                }
+            ]
+        };
+        var stat_chart = new Chart(ctx, {
+            type: "radar",
+            data: data,
+            options: {
+                scale: {
+                    reverse: false,
+                    ticks: {
+                        beginAtZero: true,
+                        max: 10,
+                        min:0,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+
+        var intelligence = <%= characters.intelligence %>;
+        var physical = <%= characters.physical %>;
+        var emotional = <%= characters.emotional %>;
+        var social =<%= characters.social %>;
+        var wealth = <%= characters.wealth %>;
+
+        var ctx = document.getElementById('ability_chart').getContext('2d');
+        var data ={
+            labels: ["지능", "신체능력", "감수성", "사교성", "재력"],
+            datasets: [
+                {
+                    label: "캐릭터 능력치",
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "rgba(190,196,132,1)",
+                    pointBackgroundColor: "rgba(190,190,132,1)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgba(190,190,132,1)",
+                    data: [intelligence, physical, emotional, social, wealth]
+                }
+            ]
+        };
+        var ability_chart = new Chart(ctx, {
+            type: "radar",
+            data: data,
+            options: {
+                scale: {
+                    reverse: false,
+                    ticks: {
+                        beginAtZero: true,
+                        max: 10,
+                        min:0,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
+<% include ../partials/footer %>
+</body>
+</html>

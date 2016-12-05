@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+
+    <div class="container post post-show">
+      <% include ./partials/header %>
+
+      <div class="contentBox">
+        <h3 class="contentBoxTop">제목: <%= projects.title %></h3>
+        <div class="row">
+          <div class="col-lg-12">
+             <div class="post-body">
+              <h3 class="col-lg-12">등장인물</h3>
+               <div class="post-body col-lg-12">
+              <% projects.character_name.forEach(function(character_name, index) { %>
+               <p class="col-lg-12">캐릭터<%=index+1%> <%= character_name%></p>
+              <% }) %></div>
+             </div>
+            <h3 class="col-lg-12">배경상황</h3>
+            <div class="post-body col-lg-12"><%= projects.situations %></div>
+            <h3 class="col-lg-12">시놉시스</h3>
+            <div class="post-body col-lg-12"><%= projects.synopsis %></div>
+            <h3 class="col-lg-12">스토리 목차</h3>
+            <div class="post-body col-lg-12">
+              <% projects.chapter_synopsis.forEach(function(chapter_synopsis, index) { %>
+              <p class="col-lg-12">챕터</span><%=index+1%> <%=
+                  chapter_synopsis%></p>
+              <%}) %>
+           </div>
+            <div class="post-body"><span>작가 </span> <%= user.username %></div>
+          </div> <!-- col end-->
+          <div class="post-info" style="width:180px;float:left">
+            <div>창작일 <%= projects.createdDate %> <%= projects.createdTime %></div>
+            <% if(projects.updatedAt) { %>
+            <div>최근 수정 <%= projects.updatedDate %> <%= projects.updatedTime %></div>
+            <% } %>
+          </div> <!-- project-info end -->
+        </div> <!-- row end -->
+      </div> <!-- post-container end -->
+
+      <div class="buttons" style="float:left;">
+        <a class="btn btn-primary" href="/users/<%=user.username%>/projects/">뒤로</a>
+        <a class="btn btn-success" href="/users/<%=user.username%>/projects/<%= projects._id %>/edit">수정</a>
+        <form action="/users/<%=user.username%>/projects/<%= projects._id %>?_method=delete" method="post">
+          <a class="btn btn-warning" href="#" onclick="confirm('선택한 프로젝트를 정말 삭제 하시겠습니까?')?this.parentElement
+          .submit():null;">프로젝트 삭제</a>
+        </form>
+      </div>
+
+      <div class="buttons" style="float:right;">
+         <a class="btn btn-danger" href="/users/<%=user.username%>/projects/<%=projects._id%>/characters">캐릭터 설정</a>
+         <a class="btn btn-info" href="/users/<%=user.username%>/projects/<%=projects._id%>/plot">플롯 패턴 설정</a>
+      </div>
+
+    </div> <!-- container end -->
+
+    <% include ../partials/footer %>
+  </body>
+</html>

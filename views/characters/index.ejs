@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/nav %>
+
+<div class="container post post-index">
+    <% include ./partials/header %>
+
+    <div class="container-fluid">
+        <div class="col-lg-4 center-block" style="width:100%;float: none; margin: 0 auto;padding-left: 70px;">
+            <div class="character-box">
+            <span class="fa fa-user-plus fa-3x center-block" style="position:absolute;margin-top: 55px; margin-bottom: 60px;
+            margin-left:55px;right: 0px;margin-right: 65px;left: 0px;bottom: 0px;top: 0px;"></span>
+                <div class="character-overay">
+                    <p class="character-new center-block" ><a style="color:#FFFFFF;" href="/users/<%=user
+                                .username%>/projects/<%=projects._id%>/characters/new">캐릭터
+                            생성하기</a></p>
+                </div>
+            </div>
+            <% if(characters == null || characters.length == 0){ %>
+            <h2 class="noData" colspan=100> 새 캐틱터를 만드세요. </h2>
+            <% } %>
+            <% characters.forEach(function(characters, index) { %>
+            <div class="character-box">
+                <p class="character-detail center-block" id="character_name">
+                    <a href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/<%=characters
+                            ._id%>"style="color:#000000;"><%=characters.name%></a>
+                 </p>
+                <p style="color:#000000; text-align: center; margin-left:20px;margin-top:100px; position:absolute;
+">작가 <%= user.username%></p>
+                <p style="color:#000000; text-align: center; margin-left:20px; margin-top:120px; position:absolute;
+">작품  <%=projects.title %></p>
+                <div class="character-overay">
+                    <p class="character-detail center-block" >
+                        <a href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/<%=characters._id%>"style="color:#FFFFFF;"><%=characters.name%></a>
+                    </p>
+                    <p style="color:#FFFFFF; text-align: center; margin-top:100px;">작가 <%= user.username %></p>
+                    <p style="color:#FFFFFF; text-align: center;">작성일 <%= characters.createdAt %></p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div class="container post post-index">
+        <div class="links col-lg-12">
+            <h3>캐릭터 관계도</h3>
+            <div id="mynetwork" style="width:100%; height:300px;"></div>
+        </div>
+
+    </div>
+
+    <div class="buttons" style="float:left;">
+        <a class="btn btn-primary" href="/users/<%=user.username%>/projects/<%=projects._id%>">뒤로</a>
+    </div>
+    <div class="buttons" style="float:right;">
+        <a class="btn btn-danger" href="/users/<%=user.username%>/projects/<%=projects._id%>/plot">플롯 패턴 설정</a>
+    </div>
+
+</div>  <!-- container end -->
+<script type="text/javascript">
+    // create an array with nodes
+    var characters_nodes = new vis.DataSet([
+        {id: 0, label: 'Node 1'}
+    ]);
+
+    // create an array with edges
+    var links = new vis.DataSet([
+        {from: 1, to: 3}
+    ]);
+
+    for(i=0; i<<%=characters.length%>; i++){
+        characters_nodes_update(i);
+        links_update(i);
+    }
+
+    function  characters_nodes_update(i){
+        var name=document.getElementById("character_name").value;
+        characters_nodes.update(
+                {id: i, label: name}
+         );
+    }
+
+    function links_update(i){
+        links.add(
+                {from: i, to:i+1 }
+        )
+    }
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: characters_nodes,
+        edges: links
+    };
+    var options = {};
+    var network = new vis.Network(container, data, options);
+</script>
+<% include ../partials/footer %>
+</body>
+</html>

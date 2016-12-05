@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="container home home-welcome">
+      <div class="container">
+        <img src="images/logo.png" class="img-responsive center-block" alt="logo"/>
+        <% if(isAuthenticated){ %>
+        <div class=".col-md-6 ">
+        <button type="button" class="btn btn-danger btn-lg center-block"><a href="/users/<%=user.username%>/projects"
+         style="color:#FFFFFF" /><%=user.username%>님의 프로젝트 시작</button></div>
+       <% } else { %>
+        <div class=".col-md-6">
+         <button type="button" class="btn btn-danger btn-lg center-block"><a href="/login"  style="color:#FFFFFF"/>새 프로젝트 만들기</button>
+        </div>
+        <% } %>
+       </div>
+    </div>
+    </div>
+    </div>
+
+    <% include ../partials/footer %>
+  </body>
+</html>

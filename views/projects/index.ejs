@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+
+    <div class="container post post-index">
+      <% include ./partials/header %>
+
+      <div class="container-fluid">
+        <div class="col-lg-4 center-block" style="width:100%;float: none; margin: 0 auto;padding-left: 70px;">
+          <div class="project-box">
+            <span class="fa fa-plus fa-5x center-block" style="position:absolute;margin-top: 120px; margin-bottom: 120px;
+            margin-left:120px;right: 0px;margin-right: 120px;left: 0px;bottom: 0px;top: 0px;"></span>
+            <div class="project-overay">
+              <p class="project-new center-block" ><a href="/users/<%=user.username%>/projects/new"style="color:#FFFFFF;">새 프로젝트
+                  시작</a></p>
+            </div>
+          </div>
+
+              <% if(projects == null || projects.length == 0){ %>
+                  <h2 class="noData" colspan=100> 새 프로젝트를 만들어보세요. </h2>
+              <% } %>
+              <% projects.forEach(function(projects) { %>
+                   <div class="project-box">
+                     <p class="project-detail center-block" >
+                       <a href="/users/<%=user.username%>/projects/<%= projects._id %>" style="color:#000000;"><%=
+                           projects.title %></a></p>
+                     <p style="color:#000000; text-align: center; margin-left:50px;margin-top:200px; position:absolute;
+">작가 <%= user
+                               .username
+                       %></p>
+                     <p style="color:#000000; text-align: center; margin-left:50px; margin-top:220px; position:absolute;">작성일 <%=
+                         projects.createdDate %></p>
+                      <div class="project-overay">
+                         <p class="project-detail center-block" >
+                           <a href="/users/<%=user.username%>/projects/<%= projects._id %>" style="color:#FFFFFF;"><%= projects.title %></a></p>
+                         <p style="color:#FFFFFF; text-align: center; margin-top:200px;">작가 <%= user.username %></p>
+                         <p style="color:#FFFFFF; text-align: center;">작성일 <%= projects.createdDate %></p>
+                       </div>
+                     </div>
+              <% }) %>
+          </div>
+      </div>
+    </div> <!-- container end -->
+    <% include ../partials/footer %>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+
+    <div class="container post post-new">
+      <% include ./partials/header %>
+      <form class="post-form form-horizontal" action="/users/<%=user.username%>/projects/" method="post">
+        <div class="contentBox">
+          <h3 class="contentBoxTop">새 프로젝트 만들기</h3>
+          <fieldset>
+            <div class="form-group">
+              <label for="title" class="col-sm-2 control-label">제목</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="title" name="title" placeholder="제목은 필수 입니다."/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="character_name" class="col-sm-2 control-label">등장인물</label>
+              <div class="col-sm-10">
+                <ul id="characters_list">
+                  <li>
+                    <input class="form-control" type="text" id="character_name" name="character_name"placeholder="캐릭터1은 필수 입니다."/>
+                  </li>
+                </ul>
+                <span class="fa fa-plus" id="add" onclick="add_characters();"> 캐릭터 추가</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="situations" class="col-sm-2 control-label">배경상황</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="situations" name="situations" rows="5" placeholder="배경상황을 쓰세요."></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="synopsis" class="col-sm-2 control-label">시놉시스</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="synopsis" name="synopsis" rows="5" placeholder="시놉시스를 쓰세요."></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="chapter_synopsis" class="col-sm-2 control-label">스토리목차</label>
+              <div class="col-sm-10" >
+                <ul id="chapters_list">
+                  <li>
+                     <textarea class="form-control" id="chapter_synopsis" name="chapter_synopsis" rows="3"
+                               placeholder="챕터1은 필수 입니다."></textarea>
+                  </li>
+                  <li>
+                     <textarea class="form-control" id="chapter_synopsis" name="chapter_synopsis" rows="3"
+                               placeholder="챕터2"></textarea>
+                  </li>
+                  <li>
+                  <textarea class="form-control" id="chapter_synopsis" name="chapter_synopsis" rows="3" placeholder="챕터3"></textarea>
+                  </li>
+                </ul>
+                <span class="fa fa-plus" id="add" onclick="add_chapters();"> 챕터 추가</span>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="floa_right">작가: <%=user.username%></div>
+        <div class="buttons" style="float:left;">
+          <a class="btn btn-primary" href="/users/<%=user.username%>/projects/">뒤로</a>
+          <button type="submit" class="btn btn-danger">저장</button>
+        </div>
+      </form>
+
+    </div>  <!-- container end -->
+
+    <script type="text/javascript">
+      function add_characters(){
+        var list = document.getElementById("characters_list");
+        var character_list = list.getElementsByTagName("li");
+        var characters_num = character_list.length;
+        characters_num++;
+        var li = document.createElement("li");
+        var input = document.createElement("input");
+
+        setAttributes(input, {
+          class: "form-control",
+          type: "text",
+          id:"character_name",
+          name:"character_name",
+          placeholder:"캐릭터"+characters_num
+        })
+
+        function setAttributes(elements, attributes) {
+          Object.keys(attributes).forEach(function(name) {
+            elements.setAttribute(name, attributes[name]);
+          })
+        }
+
+        //var input_characters ='<input class="form-control" type="text" id="characters" name="characters"'+'placeholder="캐릭터'+characters_num+'"'+'/>';
+        li.appendChild(input);
+        document.getElementById("characters_list").appendChild(li);
+
+        var div = document.createElement("DIV");
+        var txt = document.createTextNode("\u00D7");
+        div.className = "close";
+        div.appendChild(txt);
+        li.appendChild(div);
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.remove();
+          }
+        }
+      }
+    </script>
+
+    <script type="text/javascript">
+      function add_chapters() {
+        var list = document.getElementById("chapters_list");
+        var chapter_list = list.getElementsByTagName("li");
+        var chapters_num = chapter_list.length;
+        chapters_num++;
+        var li = document.createElement("li");
+        var input = document.createElement("textarea");
+
+        setAttributes(input, {
+          class: "form-control",
+          type: "text",
+          id: "chapter_synopsis",
+          name: "chapter_synopsis",
+          row: 3,
+          placeholder: "챕터" + chapters_num
+        })
+
+        function setAttributes(elements, attributes) {
+          Object.keys(attributes).forEach(function (name) {
+            elements.setAttribute(name, attributes[name]);
+          })
+        }
+
+        //var input_characters ='<input class="form-control" type="text" id="characters" name="characters"'+'placeholder="캐릭터'+characters_num+'"'+'/>';
+        li.appendChild(input);
+        document.getElementById("chapters_list").appendChild(li);
+
+        var div = document.createElement("DIV");
+        var txt = document.createTextNode("\u00D7");
+        div.className = "close";
+        div.appendChild(txt);
+        li.appendChild(div);
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.remove();
+          }
+        }
+      }
+    </script>
+
+    <% include ../partials/footer %>
+  </body>
+</html>
