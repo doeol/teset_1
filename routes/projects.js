@@ -19,8 +19,7 @@ router.route("/").get(function(req, res){
 router.get("/new", function(req, res){
     var project = req.flash("project")[0] || {};
     var errors = req.flash("errors")[0] || {};
-    var character = new Character;
-    res.render("projects/new", {user:req.user, project:project, errors:errors, character:character});
+    res.render("projects/new", {user:req.user, project:project, errors:errors});
 });
 
 // create
@@ -51,7 +50,7 @@ router.get("/:id/edit", function(req, res){
     Project.findOne({_id:req.params.id}, function(err, projects){
             if(err) {
                 return res.json(err);
-                res.render("projects/edit", {projects:projects});
+                //res.render("projects/edit", {projects:projects});
             }
             else{
             projects._id = req.params.id;

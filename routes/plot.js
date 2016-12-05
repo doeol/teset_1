@@ -6,12 +6,12 @@ var router   = express.Router();
 var Character  = require("../models/Character");
 var Project  = require("../models/Project");
 var Plot = require("../models/Plot");
-var pattern;
+
 // Index
 router.route("/").get(function(req, res){
     Character.find({project_id:req.session.project._id}, function(err, characters){
         if(err) return res.json(err);
-        if(characters == null){
+        if(characters.length === 0){
             console.log("캐릭터를 만드세요.");
             res.redirect("/users/"+req.user.username+"/projects/");
         }else{
@@ -57,7 +57,7 @@ router.get("/:id/edit", function(req, res){
 // update
 router.put("/:id", function(req, res){
     req.body.updatedAt = Date.now();
-    Plot.findOneAndUpdate({_id:req.params.id}, req.body, function(err, characters){
+    Plot.findOneAndUpdate({_id:req.params.id}, req.body, function(err){
         if(err) return res.json(err);
         res.redirect("/users/"+req.user.username+"/projects/"+req.session.project._id+"/plot/"+req.params.id);
     });

@@ -1,17 +1,17 @@
 {
-  "name": "board",
-  "version": "1.0.0",
-  "description": " ",
+  "name": "storyplatform",
+  "version": "0.9.5",
+  "description": "storyplatform by Core story",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "engines":{
-    "node":"4.6.1",
-    "npm":"3.10.9"
+    "node":"6.9.1",
+    "npm":"4.0.3"
 },
-  "author": "",
+  "author": "Doeol",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

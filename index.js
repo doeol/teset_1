@@ -35,6 +35,7 @@ app.use(function(req,res,next){
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user;
   next();
+});
 
 // Routes
 app.use("/", require("./routes/home"));
@@ -46,6 +47,7 @@ app.use("/users/:username/projects/:id/matrix", require("./routes/matrix"));
 
 
 // Port setting
-app.listen(3000, function(){
+var port = process.env.PORT||3000;
+app.listen(port, function(){
   console.log("server on!");
 });
