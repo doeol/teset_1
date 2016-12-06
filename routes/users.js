@@ -27,7 +27,7 @@ router.post("/", function(req, res){
       req.flash("errors", util.parseError(err));
       return res.redirect("/users/new");
     }
-    res.redirect("/users");
+    res.redirect("/");
   });
 });
 
@@ -54,7 +54,7 @@ router.get("/:username/edit", function(req, res){
 });
 
 // update
-router.put("/:username",function(req, res, next){
+router.put("/:username",function(req, res){
   User.findOne({username:req.params.username})
   .select({password:1})
   .exec(function(err, user){
