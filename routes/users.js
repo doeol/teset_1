@@ -41,8 +41,8 @@ router.get("/:username", function(req, res){
 
 // edit
 router.get("/:username/edit", function(req, res){
-  var user = req.flash("user")[0];
-  var errors = req.flash("errors")[0] || {};
+  var user = req.flash("user");
+  var errors = req.flash("errors") || {};
   if(!user){
     User.findOne({username:req.params.username}, function(err, user){
       if(err) return res.json(err);

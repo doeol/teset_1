@@ -66,11 +66,12 @@
         <div class="buttons">
           <button type="submit" class="btn btn-danger">Submit</button>
         </div>
-        <% if(errors.unhandled){ %>
-          <div class="alert alert-danger">
-            <%= errors.unhandled.message %>
-          </div>
-        <% } %>
+           <% if(errors.unhandled){ %>
+           <div class="alert alert-danger">
+          <%= errors.unhandled.message %>
+           </div>
+          <% } %>
+
       </form>
 
     </div> <!-- container end -->
