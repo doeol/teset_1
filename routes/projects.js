@@ -8,7 +8,7 @@ var Character = require("../models/Character");
 
 // Index
 router.route("/").get(function(req, res){
-    Project.find({user_id:req.user.id}).populate("user").sort('-createdAT').exec(
+    Project.find({}).populate("user_id").sort('-createdAT').exec(
         function(err, projects){
             if(err) return res.json(err);
             res.render("projects/index", {projects:projects, user:req.user});

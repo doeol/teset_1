@@ -23,12 +23,12 @@
             <% if(characters == null || characters.length == 0){ %>
             <h2 class="noData" colspan=100> 새 캐틱터를 만드세요. </h2>
             <% } %>
-            <% characters.forEach(function(characters, index) { %>
+            <% characters.forEach(function(characters) { %>
             <div class="character-box">
                 <p class="character-detail center-block" id="character_name">
                     <a href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/<%=characters
                             ._id%>"style="color:#000000;"><%=characters.name%></a>
-                 </p>
+                </p>
                 <p style="color:#000000; text-align: center; margin-left:20px;margin-top:100px; position:absolute;
 ">작가 <%= user.username%></p>
                 <p style="color:#000000; text-align: center; margin-left:20px; margin-top:120px; position:absolute;
@@ -42,6 +42,26 @@
                 </div>
             </div>
             <% }) %>
+
+            <%for(i=0; i < projects.character_name.length; i++) { %>
+            <div class="character-box">
+                <p class="character-detail center-block" id="character_name">
+                    <a href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/new"style="color:#000000;
+"><%=projects.character_name[i]%></a>
+                </p>
+                <p style="color:#000000; text-align: center; margin-left:20px;margin-top:100px; position:absolute;
+">작가 <%= user.username%></p>
+                <p style="color:#000000; text-align: center; margin-left:20px; margin-top:120px; position:absolute;
+">작품  <%=projects.title %></p>
+                <div class="character-overay">
+                    <p class="character-detail center-block" >
+                        <a href="/users/<%=user.username%>/projects/<%=projects._id%>/characters/new"style="color:#FFFFFF;"><%=projects.character_name[i]%></a>
+                    </p>
+                    <p style="color:#FFFFFF; text-align: center; margin-top:100px;">작가 <%= user.username %></p>
+                    <p style="color:#FFFFFF; text-align: center;">작성일 <%= projects.createdAt %></p>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 

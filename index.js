@@ -9,8 +9,8 @@ var app = express();
 
 // DB setting
 //mongoose.connect('mongodb://localhost/story');
-//var url = 'mongodb://localhost/test';
-var url = process.env.MONGOLAB_URI;
+var url = 'mongodb://localhost/test';
+//var url = process.env.MONGOLAB_URI;
 mongoose.connect(url);
 var db = mongoose.connection;
 db.once("open", function(){
