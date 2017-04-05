@@ -10,7 +10,8 @@ var app = express();
 // DB setting
 //mongoose.connect('mongodb://localhost/story');
 //var url = 'mongodb://localhost/test';
-var url = process.env.MONGOLAB_URI;
+//var url = process.env.MONGOLAB_URI;
+var url = 'mongodb://doeol:dmssuk32@ds119768.mlab.com:19768/heroku_t7gpb0gn';
 mongoose.connect(url);
 var db = mongoose.connection;
 db.once("open", function(){
