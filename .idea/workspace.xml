@@ -59,8 +59,8 @@
       <file leaf-file-name="master.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/master.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="323" column="12" selection-start-line="323" selection-start-column="12" selection-end-line="323" selection-end-column="12" />
+            <state relative-caret-position="311">
+              <caret line="320" column="19" selection-start-line="320" selection-start-column="19" selection-end-line="320" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -149,7 +149,7 @@
       </map>
     </option>
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$" source="webload_version" target-remote="heroku" target-branch="master" />
+      <push-target-info repo="$PROJECT_DIR$" source="webload_version" target-remote="origin" target-branch="webload_version" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
@@ -547,7 +547,7 @@
       <workItem from="1487664903435" duration="368000" />
       <workItem from="1490757142837" duration="700000" />
       <workItem from="1491289685106" duration="4840000" />
-      <workItem from="1491381569914" duration="3604000" />
+      <workItem from="1491381569914" duration="3720000" />
     </task>
     <task id="LOCAL-00001" summary="update!">
       <created>1480978195083</created>
@@ -717,11 +717,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491385154210</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="update!">
+      <created>1491385197115</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1491385197115</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258077000" />
+    <option name="totallyTimeSpent" value="258193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -734,7 +741,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="366" y="6" width="1557" height="1040" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17811875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.4921875" order="6" side_tool="false" content_ui="tabs" />
@@ -742,7 +749,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.48863637" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12808539" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12808539" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22112212" sideWeight="0.43629086" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1142,8 +1149,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/master.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="323" column="12" selection-start-line="323" selection-start-column="12" selection-end-line="323" selection-end-column="12" />
+        <state relative-caret-position="311">
+          <caret line="320" column="19" selection-start-line="320" selection-start-column="19" selection-end-line="320" selection-end-column="19" />
           <folding />
         </state>
       </provider>
