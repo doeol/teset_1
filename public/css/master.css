@@ -320,7 +320,7 @@ form .form-group{
 .footer{
   margin-top:100px;
   margin-bottom:0px;
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: auto;
